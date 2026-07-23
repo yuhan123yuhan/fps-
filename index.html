@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FPS 一次定位训练</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">FPS Aim Trainer</p>
+          <h1>一次定位训练</h1>
+        </div>
+        <div class="status-pill" id="sessionState">待机</div>
+      </header>
+
+      <main class="layout">
+        <section class="sidebar" aria-label="训练设置">
+          <div class="section-title">
+            <span>训练参数</span>
+            <button class="icon-button" id="resetButton" type="button" aria-label="重置训练">↻</button>
+          </div>
+
+          <label class="field">
+            <span>模式</span>
+            <select id="modeSelect">
+              <option value="balanced">标准定位</option>
+              <option value="wide">大幅拉枪</option>
+              <option value="micro">小范围修正</option>
+              <option value="vertical">垂直变线</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>轮数 <strong id="roundsValue">20</strong></span>
+            <input id="roundsInput" type="range" min="10" max="50" value="20" step="5" />
+          </label>
+
+          <label class="field">
+            <span>靶径 <strong id="sizeValue">34px</strong></span>
+            <input id="sizeInput" type="range" min="18" max="56" value="34" step="2" />
+          </label>
+
+          <label class="field">
+            <span>节奏 <strong id="paceValue">1.4s</strong></span>
+            <input id="paceInput" type="range" min="900" max="2200" value="1400" step="100" />
+          </label>
+
+          <button class="primary-button" id="startButton" type="button">开始训练</button>
+
+          <div class="score-strip" aria-label="历史最佳">
+            <div>
+              <span>最佳命中</span>
+              <strong id="bestAccuracy">--</strong>
+            </div>
+            <div>
+              <span>最佳耗时</span>
+              <strong id="bestTime">--</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="range-panel" aria-label="定位训练场">
+          <div class="range-toolbar">
+            <div>
+              <span class="muted">当前轮次</span>
+              <strong id="roundLabel">0 / 20</strong>
+            </div>
+            <div class="live-feedback" id="liveFeedback">等待开始</div>
+          </div>
+
+          <div class="stage" id="stage" role="application" aria-label="训练区域">
+            <div class="stage-grid"></div>
+            <div class="center-line horizontal"></div>
+            <div class="center-line vertical"></div>
+            <div class="target" id="target" aria-hidden="true">
+              <span></span>
+            </div>
+            <div class="shot-marker" id="shotMarker" aria-hidden="true"></div>
+            <div class="reticle" id="reticle" aria-hidden="true"></div>
+            <div class="start-overlay" id="startOverlay">
+              <button class="primary-button large" id="overlayStartButton" type="button">开始训练</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="metrics" aria-label="训练结果">
+          <div class="metric-grid">
+            <div class="metric">
+              <span>命中率</span>
+              <strong id="accuracyMetric">0%</strong>
+            </div>
+            <div class="metric">
+              <span>平均反应</span>
+              <strong id="timeMetric">--</strong>
+            </div>
+            <div class="metric">
+              <span>平均偏差</span>
+              <strong id="errorMetric">--</strong>
+            </div>
+            <div class="metric">
+              <span>连中</span>
+              <strong id="streakMetric">0</strong>
+            </div>
+          </div>
+
+          <div class="map-card">
+            <div class="section-title">
+              <span>偏移分布</span>
+              <span class="muted" id="samplesLabel">0 次</span>
+            </div>
+            <canvas id="offsetMap" width="260" height="260" aria-label="点击偏移分布图"></canvas>
+          </div>
+
+          <div class="history-card">
+            <div class="section-title">
+              <span>最近记录</span>
+              <span class="muted" id="lastResult">--</span>
+            </div>
+            <ol class="history-list" id="historyList"></ol>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
