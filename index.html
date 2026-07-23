@@ -30,8 +30,77 @@
               <option value="wide">大幅拉枪</option>
               <option value="micro">小范围修正</option>
               <option value="vertical">垂直变线</option>
+              <option value="flash">背闪训练</option>
             </select>
           </label>
+
+          <div class="sensitivity-card" aria-label="灵敏度档案">
+            <div class="section-title">
+              <span>灵敏度档案</span>
+              <strong id="edpiValue">315 eDPI</strong>
+            </div>
+
+            <div class="inline-fields">
+              <label class="field">
+                <span>DPI</span>
+                <input id="dpiInput" type="number" min="100" max="6400" value="1800" step="50" inputmode="numeric" />
+              </label>
+              <label class="field">
+                <span>游戏灵敏度</span>
+                <input id="gameSensInput" type="number" min="0.001" max="10" value="0.175" step="0.001" inputmode="decimal" />
+              </label>
+            </div>
+
+            <label class="check-field">
+              <input id="sensitivityToggle" type="checkbox" checked />
+              <span>按我的灵敏度生成靶位</span>
+            </label>
+
+            <div class="sens-readout">
+              <b id="sensTier">中低灵敏度</b>
+              <span id="sensAdvice">大拉枪 + 稳定停枪</span>
+            </div>
+          </div>
+
+          <div class="crosshair-card" aria-label="准星设置">
+            <div class="section-title">
+              <span>准星设置</span>
+              <strong id="crosshairLabel">十字</strong>
+            </div>
+
+            <div class="crosshair-preview" aria-hidden="true">
+              <div class="reticle preview-reticle is-visible style-cross" id="crosshairPreview"></div>
+            </div>
+
+            <label class="field">
+              <span>样式</span>
+              <select id="crosshairStyleInput">
+                <option value="cross">十字</option>
+                <option value="dot">圆点</option>
+                <option value="circle">空心圆</option>
+                <option value="t">T 型</option>
+                <option value="corners">四角准星</option>
+              </select>
+            </label>
+
+            <div class="swatch-row" aria-label="准星颜色">
+              <button class="color-swatch" type="button" data-color="#e2ff66" style="--swatch: #e2ff66" aria-label="荧光黄"></button>
+              <button class="color-swatch" type="button" data-color="#45d6b5" style="--swatch: #45d6b5" aria-label="青绿色"></button>
+              <button class="color-swatch" type="button" data-color="#f3f1e8" style="--swatch: #f3f1e8" aria-label="米白色"></button>
+              <button class="color-swatch" type="button" data-color="#ff6958" style="--swatch: #ff6958" aria-label="红色"></button>
+              <button class="color-swatch" type="button" data-color="#9d7cff" style="--swatch: #9d7cff" aria-label="紫色"></button>
+            </div>
+
+            <label class="field">
+              <span>大小 <strong id="crosshairSizeValue">30px</strong></span>
+              <input id="crosshairSizeInput" type="range" min="12" max="52" value="30" step="2" />
+            </label>
+
+            <label class="field">
+              <span>粗细 <strong id="crosshairThicknessValue">2px</strong></span>
+              <input id="crosshairThicknessInput" type="range" min="1" max="6" value="2" step="1" />
+            </label>
+          </div>
 
           <label class="field">
             <span>轮数 <strong id="roundsValue">20</strong></span>
@@ -46,6 +115,11 @@
           <label class="field">
             <span>节奏 <strong id="paceValue">1.4s</strong></span>
             <input id="paceInput" type="range" min="900" max="2200" value="1400" step="100" />
+          </label>
+
+          <label class="field" id="flashField" hidden>
+            <span>背闪曝光 <strong id="flashValue">260ms</strong></span>
+            <input id="flashInput" type="range" min="120" max="600" value="260" step="20" />
           </label>
 
           <button class="primary-button" id="startButton" type="button">开始训练</button>
